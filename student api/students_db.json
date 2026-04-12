@@ -1,0 +1,192 @@
+[
+    {
+        "id": 1,
+        "fname": "Noa",
+        "lname": "Levi",
+        "age": 22,
+        "dept": "Computer Science",
+        "year": 2,
+        "birthdate": "2002-05-14",
+        "courses": [
+            {
+                "name": "Python 101",
+                "grade": 95
+            },
+            {
+                "name": "Data Structures",
+                "grade": 88
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "fname": "Ethan",
+        "lname": "Cohen",
+        "age": 24,
+        "dept": "Mechanical Engineering",
+        "year": 3,
+        "birthdate": "2000-11-20",
+        "courses": [
+            {
+                "name": "Thermodynamics",
+                "grade": 78
+            },
+            {
+                "name": "Calculus B",
+                "grade": 82
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "fname": "Maya",
+        "lname": "Abraham",
+        "age": 21,
+        "dept": "Psychology",
+        "year": 1,
+        "birthdate": "2003-02-10",
+        "courses": [
+            {
+                "name": "Intro to Psychology",
+                "grade": 92
+            },
+            {
+                "name": "Statistics",
+                "grade": 85
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "fname": "Daniel",
+        "lname": "Mizrahi",
+        "age": 25,
+        "dept": "Computer Science",
+        "year": 4,
+        "birthdate": "1999-08-30",
+        "courses": [
+            {
+                "name": "Machine Learning",
+                "grade": 98
+            },
+            {
+                "name": "Algorithms",
+                "grade": 94
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "fname": "Liam",
+        "lname": "Perez",
+        "age": 23,
+        "dept": "Economics",
+        "year": 2,
+        "birthdate": "2001-04-05",
+        "courses": [
+            {
+                "name": "Microeconomics",
+                "grade": 70
+            },
+            {
+                "name": "Macroeconomics",
+                "grade": 75
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "fname": "Shira",
+        "lname": "Golan",
+        "age": 22,
+        "dept": "Biology",
+        "year": 2,
+        "birthdate": "2002-12-12",
+        "courses": [
+            {
+                "name": "Genetics",
+                "grade": 89
+            },
+            {
+                "name": "Chemistry",
+                "grade": 84
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "fname": "Roy",
+        "lname": "Dayan",
+        "age": 26,
+        "dept": "Law",
+        "year": 3,
+        "birthdate": "1998-01-25",
+        "courses": [
+            {
+                "name": "Criminal Law",
+                "grade": 80
+            },
+            {
+                "name": "Contracts",
+                "grade": 82
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "fname": "Michal",
+        "lname": "Shapiro",
+        "age": 20,
+        "dept": "Architecture",
+        "year": 1,
+        "birthdate": "2004-06-18",
+        "courses": [
+            {
+                "name": "History of Arts",
+                "grade": 90
+            },
+            {
+                "name": "Sketching",
+                "grade": 88
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "fname": "Jonathan",
+        "lname": "Barak",
+        "age": 23,
+        "dept": "Computer Science",
+        "year": 2,
+        "birthdate": "2001-09-03",
+        "courses": [
+            {
+                "name": "Networks",
+                "grade": 65
+            },
+            {
+                "name": "C++ Programming",
+                "grade": 72
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "fname": "Tali",
+        "lname": "Shalom",
+        "age": 24,
+        "dept": "Physics",
+        "year": 3,
+        "birthdate": "2000-03-22",
+        "courses": [
+            {
+                "name": "Advanced Quantum Mechanics",
+                "grade": 89
+            },
+            {
+                "name": "Calculus",
+                "grade": 98
+            }
+        ]
+    }
+]
