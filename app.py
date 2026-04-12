@@ -1,3 +1,4 @@
+
 from flask import Flask , jsonify
 import requests
 import datetime
@@ -20,7 +21,7 @@ def hello_name(name):
 
 @app.route('/get_date')
 def get_date():
-    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d")  
     return jsonify({"date": current_date})
 
 @app.route('/get_time')
