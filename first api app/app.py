@@ -4,7 +4,7 @@ import datetime
 app = Flask(__name__)
 
 database = [
-    {"id": 1, "name": "Daniel", "status": "Admin"},
+    {"id": 1, "name": "Admin", "status": "Admin"},
     {"id": 2, "name": "System", "status": "Active"}
 ]
 
@@ -205,8 +205,6 @@ def delete_data(id):
         <p>Record ID <b>{id}</b> has been removed.</p>
     ''')
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
 
 # ---------------- RUN ----------------
 if __name__ == '__main__':
