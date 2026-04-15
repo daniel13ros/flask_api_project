@@ -37,7 +37,7 @@ tasks = {
     id2: Task(uuid=id2, title="Build API", description="Integrate Swagger UI")
 }
 
-# --- Routes ---
+# --- Full CRUD Routes ---
 
 @app.route('/tasks', methods=['GET'])
 def get_all_tasks():
@@ -76,6 +76,39 @@ def get_task_by_id(task_id):
         raise MyCustomError("Task not found", error_code=404, payload={"requested_id": task_id})
     return jsonify(tasks[task_id].to_dict())
 
+@app.route('/tasks/search/<string:title>', methods=['GET'])
+def search_tasks_by_title(title):
+    """
+    Search for tasks by title (partial match).
+    ---
+    parameters:
+      - name: title
+        in: path
+        type: string
+        required: true
+        description: The string to search for within task titles.
+    responses:
+      200:
+        description: A list of tasks that match the search criteria.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Task'
+      404:
+        description: No tasks matched the search string.
+    """
+    # Use a list comprehension to find partial matches (case-insensitive)
+    found_tasks = [
+        task.to_dict() for task in tasks.values() 
+        if title.lower() in task.title.lower()
+    ]
+
+    # If the list is empty, we raise our custom error
+    if not found_tasks:
+        raise MyCustomError(message=f"No tasks found containing the text: '{title}'", error_code=404, payload={"search_term": title})
+
+    return jsonify(found_tasks)
+
 @app.route('/tasks', methods=['POST'])
 def create_task(): 
     """
@@ -98,8 +131,8 @@ def create_task():
         description: Missing required fields.
     """
     data = request.get_json()
-    if not data or 'title' not in data:
-        raise MyCustomError("Missing field: 'title'", error_code=400)
+    validate_task_data(data)
+
 
     new_id = str(uuid.uuid4())
     new_task = Task(uuid=new_id, title=data['title'], description=data.get('description', ""))
@@ -131,6 +164,7 @@ def update_task(task_id):
         raise MyCustomError("Cannot update: Task not found", error_code=404)
     
     data = request.get_json()
+    validate_task_data(data)
     task = tasks[task_id] 
     task.title = data.get('title', task.title)
     task.description = data.get('description', task.description)
@@ -155,7 +189,7 @@ def delete_task(task_id):
         description: Task not found.
     """
     if task_id not in tasks:
-        raise MyCustomError("Cannot delete: Task not found", error_code=404)
+        raise MyCustomError("Cannot delete: Task not found", error_code=404) 
         
     del tasks[task_id] 
     return jsonify({"message": "Task deleted successfully"}), 200
@@ -172,15 +206,17 @@ def handle_custom_error(error):
 @app.errorhandler(Exception)
 def handle_unexpected_error(error):
     """Catch-all for any other unexpected errors."""
-    response = jsonify({
-        "status": "error",
-        "message": "Internal Server Error",
-        "details": str(error)
-    })
+    response = jsonify({"status": "error","message": "Internal Server Error","details": str(error)})
     response.status_code = 500
     return response
 
-# --- Start the Server ---
+def validate_task_data(data):
+    if not data or 'title' not in data:
+        raise MyCustomError("Missing field: 'title'", error_code=400)
+    if not data['title'].strip():
+        raise MyCustomError("Field 'title' cannot be empty", error_code=400)
+    if 'description' in data and not data['description'].strip():
+        raise MyCustomError("Field 'description' cannot be empty", error_code=400)
+
 if __name__ == "__main__":
-    # Ensure app.run is the very last line
     app.run(debug=True, port=5000)
