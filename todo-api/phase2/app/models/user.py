@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime , timezone
 from bson import ObjectId
 from typing import Optional
 
@@ -8,7 +8,7 @@ class User:
         self.username = username
         self.email = email
         self.password_hash = password_hash
-        self.created_at = created_at or datetime.timezone.utc.now()
+        self.created_at = created_at or datetime.now(timezone.utc)
         
     @classmethod
     def from_mongo(cls, data: dict):

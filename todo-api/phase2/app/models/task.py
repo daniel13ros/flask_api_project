@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime , timezone
 from bson import ObjectId
 from typing import List, Optional
 
@@ -13,7 +13,7 @@ class Task:
         self.due_date = due_date
         self.category_id = category_id
         self.subtasks = subtasks or []
-        self.updated_at = updated_at or datetime.timezone.utc.now()
+        self.updated_at = updated_at or datetime.now(timezone.utc)
 
     @classmethod
     def from_mongo(cls, data: dict):

@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import datetime , timezone
 from typing import Optional
 
 class SystemLog:
     def __init__(self, level: str, message: str, endpoint: str, traceback: Optional[str] = None, user_id: Optional[str] = None):
-        self.timestamp = datetime.timezone.utc.now()
+        self.timestamp = datetime.now(timezone.utc)
         self.level = level
         self.message = message
         self.endpoint = endpoint
