@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>Task Dashboard</h1>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <section class="card" style="margin-bottom: 20px; background: #e3f2fd;">
+                <h3>Active User</h3>
+                <select id="user-switcher" onchange="setCurrentUser(this.value)">
+                    <option value="" disabled selected>Select User</option>
+                </select>
+            </section>
+
+            <section class="card">
+                <h2>Create New Task</h2>
+                <form id="task-form">
+                    <input type="text" id="task-title" placeholder="Title" required>
+                    <textarea id="task-description" placeholder="Description..."></textarea>
+                    <div class="form-row">
+                        <select id="task-category" required><option value="" disabled selected>Category</option></select>
+                        <select id="task-priority">
+                            <option value="1">Low</option><option value="3" selected>Medium</option><option value="5">High</option>
+                        </select>
+                    </div>
+                    <button type="submit">Add Task</button>
+                </form>
+            </section>
+
+            <section class="card" style="margin-top: 20px;">
+                <h3>Add Category</h3>
+                <div class="form-row">
+                    <input type="text" id="new-category-name" placeholder="Category Name">
+                    <button onclick="createCategory()" style="width: auto; padding: 0 15px;">+</button>
+                </div>
+            </section>
+
+            <section class="card" style="margin-top: 20px; background: #fff3e0;">
+                <h3>Register New User</h3>
+                <input type="text" id="new-username" placeholder="Username" style="margin-bottom: 5px;">
+                <input type="email" id="new-email" placeholder="Email" style="margin-bottom: 5px;">
+                <input type="password" id="new-password" placeholder="Password">
+                <button onclick="createUser()" style="margin-top: 10px;">Register</button>
+            </section>
+
+        </aside>
+
+        <main class="feed">
+            <h2>Your Active Tasks</h2>
+            <div id="tasks-list"></div>
+        </main>
+    </div>
+
+    <div id="edit-modal" class="modal" style="display:none;"><div class="modal-content card">
+        <h2>Edit Task</h2>
+        <input type="hidden" id="edit-task-id">
+        <input type="text" id="edit-title">
+        <textarea id="edit-description"></textarea>
+        <div class="form-row">
+            <select id="edit-category"><option value="" disabled>Category</option></select>
+            <select id="edit-priority"><option value="1">Low</option><option value="3">Medium</option><option value="5">High</option></select>
+        </div>
+        <button onclick="saveEdit()" style="background: var(--primary);">Save</button>
+        <button onclick="closeModal('edit-modal')" style="background: var(--text-secondary);">Cancel</button>
+    </div></div>
+
+    <div id="view-modal" class="modal" style="display:none;"><div class="modal-content card">
+        <h2 id="view-title"></h2>
+        <p><strong>Description:</strong> <span id="view-description"></span></p>
+        <p><strong>Category:</strong> <span id="view-category"></span></p>
+        <p><strong>Priority:</strong> <span id="view-priority"></span></p>
+        <button onclick="closeModal('view-modal')">Close</button>
+    </div></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

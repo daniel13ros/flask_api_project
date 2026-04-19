@@ -5,15 +5,17 @@ class LogService:
     
     @staticmethod
     def add_log(action, message, level="INFO"):
-        log_entry = {
-            "action": action,
-            "message": message,
-            "level": level.upper(),  
-            "timestamp": datetime.now(timezone.utc) 
-        }
-        
-        result = db.system_logs.insert_one(log_entry)
-        return str(result.inserted_id)
+        try:
+            log_entry = {
+                "action": action,
+                "message": message,
+                "level": level.upper(),  
+                "timestamp": datetime.now(timezone.utc) 
+            } 
+            result = db.system_logs.insert_one(log_entry)
+            return str(result.inserted_id)
+        except Exception as e:
+            return None
 
     @staticmethod
     def get_logs(level=None, limit=50):
